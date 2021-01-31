@@ -1,0 +1,36 @@
+@layout('master')
+
+@section('content')
+
+<h1>Sign Up</h1>
+
+<form action="{{ route("UserController.create") }}" method="post">
+  {{ csrfField() }}
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" value="{{ old('username', '') }}">
+    {{ elIf('<span class="error">$self</span>', getErrorFor('username'), hasErrorFor('username')) }}
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="{{ old('email', '') }}">
+    {{ elIf('<span class="error">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    {{ elIf('<span class="error">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+  </div>
+
+  <div>
+    <label for="password_confirmation">Confirm password:</label>
+    <input type="password" name="password_confirmation" id="password_confirmation">
+    {{ elIf('<span class="error">$self</span>', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}
+  </div>
+
+  <input type="submit" value="Register">
+</form>
+
+@endsection

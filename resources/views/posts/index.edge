@@ -1,0 +1,26 @@
+@layout('master')
+
+@section('content')
+  
+@if(flashMessage('notification'))
+  <span>{{ flashMessage('notification') }}</span>
+@endif
+
+<h1>Posts</h1>
+
+<a href="{{ route("PostController.new") }}">Create a new Post</a>
+
+<ul>
+  @each(post in posts)
+    <li> 
+      <a href="{{ route('PostController.show', { id:  post.id }) }}">{{ post.title }}</a>
+      <a href="{{ route('PostController.edit', {id: post.id}) }}">Edit</a>
+      <form action="{{ route("PostController.destroy", {id: post.id}) }}?_method=DELETE" method="POST" >
+       {{ csrfField() }}
+        <input type="submit" value="Delete">
+      </form>
+    </li>
+  @endeach
+</ul>
+
+@endsection

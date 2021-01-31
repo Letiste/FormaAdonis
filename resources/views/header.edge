@@ -1,0 +1,20 @@
+<header>
+  <h2>App</h2>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/posts">Posts</a></li>
+      <li><a href="/contact">Contact</a></li>
+      @loggedIn
+      <li><a href="{{ route('UserController.show', {id: auth.user.id}) }}">Profile</a></li>
+      <li><form action="{{ route("SessionController.destroy") }}?_method=DELETE" method="POST" >
+        {{ csrfField() }}
+         <input type="submit" value="Logout">
+       </form></li>  
+      @else
+      <li><a href="/signup">Sign up</a></li>
+      <li><a href="/login">Sign in</a></li>
+      @endloggedIn
+      </ul>
+  </nav>
+</header>

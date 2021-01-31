@@ -1,0 +1,24 @@
+@layout('master')
+
+@section('content')
+
+<h1>Edit Post</h1>
+
+<form action="{{ route("PostController.update", {id: post.id}) }}?_method=PUT" method="post">
+  {{ csrfField() }}
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" value="{{ old('title', post.title) }}">
+    {{ elIf('<span class="error">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
+  </div>
+
+  <div>
+    <label for="content">Content:</label>
+    <textarea name="content" id="content" >{{ old('content', post.content) }}</textarea>
+    {{ elIf('<span class="error">$self</span>', getErrorFor('content'), hasErrorFor('content')) }}
+  </div>
+
+  <input type="submit" value="Update my Post">
+</form>
+
+@endsection

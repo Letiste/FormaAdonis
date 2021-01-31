@@ -1,0 +1,26 @@
+@layout('master')
+
+@section('content')
+
+<h1>Sign in</h1>
+
+@if(flashMessage('notification'))
+  <span>{{ flashMessage('notification') }}</span>
+@endif
+
+<form action="/login" method="post">
+  {{ csrfField() }}
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="{{ old('email', '') }}">
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+  </div>
+
+  <input type="submit" value="Login">
+</form>
+
+@endsection
